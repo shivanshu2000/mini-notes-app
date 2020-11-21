@@ -1,0 +1,78 @@
+<%- include('../partials/head.ejs')  %> 
+
+<body>
+    <%- include('../partials/navigation.ejs')  %>  
+    
+    <header id="main-header" class="py-2 bg-light text-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 pt-3">
+            <h2>
+              <i class="mr-4 fas fa-cog"></i> Welcome <%=user.showName%> </h2>
+              <i class="fa fa-github bg-dark" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <section id="actions" class="py-4 mb-4 bg-light">
+        <div class="col-md-5 m-auto">
+            <a href="/" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCollectionModal">
+              <i class="fas fa-plus"></i> Add Collection
+            </a>
+          </div>    
+      </section>
+       
+      <div class="modal fade" id="addCollectionModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title">Add Collection</h5>
+              <button class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form actions="/" method="POST">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input type="text" name="title" class="form-control" placeholder="Your collection name here...">
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                  </div>
+                </div>
+               
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    
+     <div class="row justify-content-around">
+        <% collections.forEach(collection=>{ %>
+          <div class="card col-3.2 my-4">
+              <img class="card-img-top" style="opacity: 0.7;" src="https://source.unsplash.com/random/300x200" alt="">
+              <div class="card-body">
+                  <h4 class="card-title"><%=collection.name %> </h4>
+        
+                <a class="btn btn-success btn-block" href="collections/<%=collection._id  %> " type="submit">Open collection</a>
+           
+                <div class="card-footer text-muted">
+                  <form action="/deleteCollection/<%= collection._id%>" method="POST">
+              
+                   <button class="btn btn-outline-success btn-block" type="submit">Delete collection</button>
+                  </form>
+                  </div>
+           
+              </div>
+          </div>
+      
+          <% }) %> 
+          
+     </div>
+
+     
+     
+
+<%- include('../partials/end.ejs')  %>     
