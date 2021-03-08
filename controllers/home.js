@@ -117,7 +117,11 @@ exports.postSingleCollection = async (req, res, next) => {
   const info = req.body.info;
 
   const parentCollectionId = req.params.id;
-  if (!title || !info) {
+  if (!title) {
+    return res.redirect('/collections/' + parentCollectionId);
+  }
+
+  if (!info) {
     return res.redirect('/collections/' + parentCollectionId);
   }
   try {
