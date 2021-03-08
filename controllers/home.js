@@ -86,7 +86,11 @@ exports.getLogout = (req, res) => {
 exports.postCollection = async (req, res, next) => {
   const name = req.body.title;
   try {
+<<<<<<< HEAD
     if (!req.body.name) {
+=======
+    if (!req.body.title) {
+>>>>>>> 8e66fcdc282877def4101a7bae9c10a885e2f760
       return res.redirect('/');
     }
     await Collection.create({
@@ -117,7 +121,11 @@ exports.postSingleCollection = async (req, res, next) => {
   const info = req.body.info;
 
   const parentCollectionId = req.params.id;
-  if (!title || !info) {
+  if (!title) {
+    return res.redirect('/collections/' + parentCollectionId);
+  }
+
+  if (!info) {
     return res.redirect('/collections/' + parentCollectionId);
   }
 
