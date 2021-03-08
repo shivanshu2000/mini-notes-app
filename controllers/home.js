@@ -86,7 +86,7 @@ exports.getLogout = (req, res) => {
 exports.postCollection = async (req, res, next) => {
   const name = req.body.title;
   try {
-    if (!req.body.name) {
+    if (!req.body.title) {
       return res.redirect('/');
     }
     await Collection.create({
